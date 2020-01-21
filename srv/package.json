@@ -1,0 +1,31 @@
+{
+    "name": "cv2s-srv",
+    "description": "Generated from ../package.json, do not change!",
+    "version": "1.0.0",
+    "dependencies": {
+        "@sap/cds": "^3.21.2",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.4.17",
+        "express": "^4.17.1",
+        "hdb": "^0.17.1"
+    },
+    "engines": {
+        "node": "^10",
+        "npm": "^6"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "postinstall": "npm dedupe && node .build.js",
+        "startcds": "node ./node_modules/@sap/cds/bin/cds.js serve gen/csn.json",
+        "start": "node index",
+        "watch": "nodemon -w . -i node_modules/**,.git/** -e cds -x npm run build"
+    },
+    "private": true,
+    "cds": {
+        "requires": {
+            "db": {
+                "kind": "hana",
+                "model": "gen/csn.json"
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+ID: cv2s
+_schema-version: "3.1"
+version: 0.0.1
+modules:
+  - name: cv2s-db
+    type: hdb
+    path: db
+    parameters:
+      memory: 256M
+      disk-quota: 256M
+    requires:
+      - name: cv2s-container
+  - name: cv2s-srv
+    type: nodejs
+    path: srv
+    parameters:
+      memory: 256M
+      disk-quota: 256M
+    provides:
+      - name: cv2s-backend
+        public: true
+        properties:
+          url: ${default-url}
+    requires:
+      - name: cv2s-container
+resources:
+  - name: cv2s-container
+    type: com.sap.xs.hdi-container
+    properties:
+      hdi-container-name: ${service-name}
